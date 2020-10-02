@@ -54,12 +54,22 @@ def lines_printed_custom(lines_list):
     #adds spaces surrounding user_word
     user_word = " " + user_word.lower() + " "
     
-    print(f"Lines from the poem containing the word: {user_word}")
+    print(f"Lines from the poem containing the word:{user_word}")
+    print("-----------------------------------------------------")
     for line in lines_list:
         if user_word in line:
             print(line, end='')
 
     return
+
+#goes through each line of the poem and prints the line with its words randomized
+def randomize_words(lines_list):
+    for line in lines_list:
+        word_list = line.split()
+        while len(word_list) > 0:
+            ran_index = random.randint(0, len(word_list)-1)
+            print(word_list[ran_index], end=' ')
+            del word_list[ran_index]         
 
 def print_menu():
     print("\nInput a number from the menu below to choose how the poem should be read:")
@@ -78,16 +88,18 @@ def choose_print():
     user_choice = input("")
 
     while user_choice != 'stop':
-        if user_choice is '1':
+        if user_choice == '1':
             lines_print_normally(get_file_lines(poem_txt))
-        elif user_choice is '2':
+        elif user_choice == '2':
             lines_printed_backwards(get_file_lines(poem_txt))
-        elif user_choice is '3':
+        elif user_choice == '3':
             lines_printed_random(get_file_lines(poem_txt))
-        elif user_choice is '4':
+        elif user_choice == '4':
             lines_printed_custom(get_file_lines(poem_txt))
         print_menu()
         user_choice = input("")
 
-choose_print()
+# choose_print()
+
+randomize_words(get_file_lines(poem_txt))
     
