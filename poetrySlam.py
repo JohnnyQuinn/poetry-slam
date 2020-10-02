@@ -1,4 +1,5 @@
 import random
+import string
 
 poem_txt = "./poetry slam/poem.txt"
 #Citation: Chanie Gorkin
@@ -33,9 +34,10 @@ def lines_printed_random(lines_list):
         del poem[ran_index]
     return
 
+#asks user to input a word and it will only print lines containing that word
 def lines_printed_custom(lines_list):
-    global user_word
-    print("\nYou've chosen to print the poem using the custom function!\n")
+    print("------------------------------------------------------------")
+    print("You've chosen to print the poem using the custom function!")
     print("Input a word and only lines containing that word will be printed")
     user_word = input("Input a word of your choice:\n")
 
@@ -43,7 +45,19 @@ def lines_printed_custom(lines_list):
     while any(char.isdigit() for char in user_word):
         print("------------------------------")
         print("ERROR: input contains a number")
+        print("------------------------------")
         user_word = input("\nInput a word of your choice:\n")
+
+    print("\n")
+
+    #adds spaces surrounding user_word
+    user_word = " " + user_word.lower() + " "
+    
+    for line in lines_list:
+        if user_word in line:
+            print(line, end='')
+
+    return
 
 
 
