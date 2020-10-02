@@ -1,0 +1,2 @@
+This program asks the user to choose a way to print out a poem. Options to print the poem are to print the lines in order, print the lines in reverse, 
+print the lines in random order, print only the lines containing a word of the user's choosing, and print each line in order with the line's words randomized. 

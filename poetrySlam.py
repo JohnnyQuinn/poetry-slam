@@ -1,6 +1,11 @@
 import random
 import string
 
+"""
+Asks user to choose a way to print out a poem. Options to print the poem are print lines normally, print lines in reverse, print lines in random order,
+print only lines containing a word of the user's choosing, and print each line with the line's words randomized
+"""
+
 poem_txt = "./poetry slam/poem.txt"
 #Poem citation: Chanie Gorkin
 
@@ -64,13 +69,16 @@ def lines_printed_custom(lines_list):
 
 #goes through each line of the poem and prints the line with its words randomized
 def randomize_words(lines_list):
+    print("\n")
     for line in lines_list:
         word_list = line.split()
         while len(word_list) > 0:
             ran_index = random.randint(0, len(word_list)-1)
             print(word_list[ran_index], end=' ')
-            del word_list[ran_index]         
+            del word_list[ran_index]  
+        print("\n")       
 
+#prints menu of options for user to choose
 def print_menu():
     print("\nInput a number from the menu below to choose how the poem should be read:")
     print("_________________________________________________________")
@@ -78,6 +86,7 @@ def print_menu():
     print("| 2 | Print in reverse")
     print("| 3 | Print lines randomly")
     print("| 4 | Print lines only containing a word of your choice")
+    print("| 5 | Print poem but each line's words are randomized")
     print("_________________________________________________________\nENTER 'stop' TO EXIT")
 
 def choose_print():
@@ -96,10 +105,10 @@ def choose_print():
             lines_printed_random(get_file_lines(poem_txt))
         elif user_choice == '4':
             lines_printed_custom(get_file_lines(poem_txt))
+        elif user_choice == '5':
+            randomize_words(get_file_lines(poem_txt))
         print_menu()
         user_choice = input("")
 
-# choose_print()
-
-randomize_words(get_file_lines(poem_txt))
+choose_print()
     
