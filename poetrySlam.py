@@ -25,7 +25,7 @@ def lines_print_normally(lines_list):
 def lines_printed_backwards(lines_list):
     lines_len = len(lines_list) - 1
     print("\nPoem in reverse:\n----------------")
-    for line_num in range(lines_len, 0, -1):
+    for line_num in range(lines_len, -1, -1):
         print(f"{line_num} {lines_list[line_num]}", end='')
     return
 
