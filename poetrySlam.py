@@ -2,7 +2,7 @@ import random
 import string
 
 poem_txt = "./poetry slam/poem.txt"
-#Citation: Chanie Gorkin
+#Poem citation: Chanie Gorkin
 
 #Recieves txt file, opens, returns readlines() of txt, then closes
 def get_file_lines(filename):
@@ -11,15 +11,17 @@ def get_file_lines(filename):
     infile.close() 
     return lines
 
+def lines_print_normally(lines_list):
+    print("\n")
+    for lines in lines_list:
+        print(f"{lines}", end='')
+
 #Prints txt file's lines backwards along with original line numbers
 def lines_printed_backwards(lines_list):
     lines_len = len(lines_list) - 1
     print("\nPoem in reverse:\n----------------")
     for line_num in range(lines_len, 0, -1):
-        if line_num >= lines_len:
-            print(f"{line_num} {lines_list[line_num]}")
-        else:
-            print(f"{line_num} {lines_list[line_num]}", end='')
+        print(f"{line_num} {lines_list[line_num]}", end='')
     return
 
 #prints poem out with lines in a random order
@@ -37,7 +39,6 @@ def lines_printed_random(lines_list):
 #asks user to input a word and it will only print lines containing that word
 def lines_printed_custom(lines_list):
     print("------------------------------------------------------------")
-    print("You've chosen to print the poem using the custom function!")
     print("Input a word and only lines containing that word will be printed")
     user_word = input("Input a word of your choice:\n")
 
@@ -53,14 +54,40 @@ def lines_printed_custom(lines_list):
     #adds spaces surrounding user_word
     user_word = " " + user_word.lower() + " "
     
+    print(f"Lines from the poem containing the word: {user_word}")
     for line in lines_list:
         if user_word in line:
             print(line, end='')
 
     return
 
+def print_menu():
+    print("\nInput a number from the menu below to choose how the poem should be read:")
+    print("_________________________________________________________")
+    print("| 1 | Print normally ")
+    print("| 2 | Print in reverse")
+    print("| 3 | Print lines randomly")
+    print("| 4 | Print lines only containing a word of your choice")
+    print("_________________________________________________________\nENTER 'stop' TO EXIT")
 
+def choose_print():
+    print("--------------------------------------------")
+    print("Let's read 'Worst Day Ever' by Chanie Gorkin")
+    print_menu()
 
-# lines_printed_backwards(get_file_lines(poem_file))
-# lines_printed_random(get_file_lines(poem_txt))
-lines_printed_custom(get_file_lines(poem_txt))
+    user_choice = input("")
+
+    while user_choice != 'stop':
+        if user_choice is '1':
+            lines_print_normally(get_file_lines(poem_txt))
+        elif user_choice is '2':
+            lines_printed_backwards(get_file_lines(poem_txt))
+        elif user_choice is '3':
+            lines_printed_random(get_file_lines(poem_txt))
+        elif user_choice is '4':
+            lines_printed_custom(get_file_lines(poem_txt))
+        print_menu()
+        user_choice = input("")
+
+choose_print()
+    
